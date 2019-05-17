@@ -6,9 +6,9 @@ namespace TestingWorkshop.Unit.Tests
     public class LoginManagerTests
     {
         [Theory]
-        [InlineData(4, true)]
+        [InlineData(4, false)]
         [InlineData(5, true)]
-        [InlineData(6, false)]
+        [InlineData(6, true)]
         public void HasFailedLoginTests(int userFailedLoginCount, bool expected)
         {
             //Arrange

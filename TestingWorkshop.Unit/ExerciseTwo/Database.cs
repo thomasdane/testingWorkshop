@@ -4,15 +4,20 @@ namespace TestingWorkshop.Unit
 {
     public interface IDatabase
     {
-        Task<int> GetFailedLoginCountAsync(int userId);
+        Task<int> GetUserFailedLoginCountAsync(int userId);
+        Task<int> GetUserSessionDurationAsync(int userId);
     }
 
     public class Database : IDatabase
     {
-        public async Task<int> GetFailedLoginCountAsync(int userId)
+        public async Task<int> GetUserFailedLoginCountAsync(int userId)
         {
-            //In real life, call database with userId
             return await Task.Run(() => 5);
+        }
+
+        public async Task<int> GetUserSessionDurationAsync(int userId)
+        {
+            return await Task.Run(() => 3600);
         }
     }
 }

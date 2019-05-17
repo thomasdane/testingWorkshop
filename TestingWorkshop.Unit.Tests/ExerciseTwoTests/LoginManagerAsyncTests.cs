@@ -7,9 +7,9 @@ namespace TestingWorkshop.Unit.Tests
     public class LoginManagerAsyncTests
     {
         [Theory]
-        [InlineData(4, true)]
+        [InlineData(4, false)]
         [InlineData(5, true)]
-        [InlineData(6, false)]
+        [InlineData(6, true)]
         public async Task HasFailedLoginAsyncTests(int userFailedLoginCount, bool expected)
         {
             //Arrange
@@ -27,7 +27,7 @@ namespace TestingWorkshop.Unit.Tests
         private IDatabase GetDatabaseMock(int userFailedLoginCount)
         {
             var databaseMock = new Mock<IDatabase>();
-            databaseMock.Setup(mock => mock.GetFailedLoginCountAsync(It.IsAny<int>())).ReturnsAsync(userFailedLoginCount);
+            databaseMock.Setup(mock => mock.GetUserFailedLoginCountAsync(It.IsAny<int>())).ReturnsAsync(userFailedLoginCount);
             return databaseMock.Object;
         }
     }
