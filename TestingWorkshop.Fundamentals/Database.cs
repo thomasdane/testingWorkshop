@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace TestingWorkshop.Unit
+namespace TestingWorkshop.Fundamentals
 {
     public interface IDatabase
     {

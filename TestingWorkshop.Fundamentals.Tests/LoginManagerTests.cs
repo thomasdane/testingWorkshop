@@ -1,10 +1,10 @@
-using Xunit;
 using Moq;
 using System.Threading.Tasks;
+using Xunit;
 
-namespace TestingWorkshop.Unit.Tests
+namespace TestingWorkshop.Fundamentals.Tests
 {
-    public class LoginManagerAsyncTests
+    public class LoginManagerTests
     {
         [Theory]
         [InlineData(4, false)]
@@ -13,12 +13,12 @@ namespace TestingWorkshop.Unit.Tests
         public async Task HasFailedLoginAsyncTests(int userFailedLoginCount, bool expected)
         {
             //Arrange
-            var userId = 1;
             var databaseMock = GetDatabaseMock(userFailedLoginCount);
-            var loginManager = new LoginManagerAsync(databaseMock);
+            var configMock = GetConfigurationMock();
+            var loginManager = new LoginManager(configMock, databaseMock);
 
             //Act
-            var actual = await loginManager.HasFailedLogin(userId);
+            var actual = await loginManager.HasFailedLoginAsync(1);
 
             //Assert
             Assert.Equal(expected, actual);
@@ -29,6 +29,13 @@ namespace TestingWorkshop.Unit.Tests
             var databaseMock = new Mock<IDatabase>();
             databaseMock.Setup(mock => mock.GetUserFailedLoginCountAsync(It.IsAny<int>())).ReturnsAsync(userFailedLoginCount);
             return databaseMock.Object;
+        }
+
+        private IConfiguration GetConfigurationMock()
+        {
+            var configMock = new Mock<IConfiguration>();
+            configMock.Setup(mock => mock.MaxFailedLoginCount).Returns(5);
+            return configMock.Object;
         }
     }
 }
