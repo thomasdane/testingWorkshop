@@ -4,13 +4,13 @@ namespace TestingWorkshop.Fundamentals
 {
     public class LoginManagerWithConfig
     {
-        private readonly IDatabase _database;
         private readonly IConfiguration _configuration;
+        private readonly IDatabase _database;
 
-        public LoginManagerWithConfig(IDatabase database, IConfiguration configuration)
+        public LoginManagerWithConfig(IConfiguration configuration, IDatabase database)
         {
-            _database = database;
             _configuration = configuration;
+            _database = database;
         }
 
         public async Task<bool> HasLoginFailedAsync(int userId)

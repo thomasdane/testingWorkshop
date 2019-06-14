@@ -12,12 +12,12 @@ namespace TestingWorkshop.Fundamentals
     {
         public async Task<int> GetUserFailedLoginCountAsync(int userId)
         {
-            return await Task.Run(() => 5);
+            return await Task.Run(() => 35);
         }
 
         public async Task<int> GetUserSessionDurationAsync(int userId)
         {
-            return await Task.Run(() => 3600);
+            return await Task.Run(() => 7200);
         }
     }
 }

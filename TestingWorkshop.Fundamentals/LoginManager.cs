@@ -1,25 +1,23 @@
-﻿using System.Threading.Tasks;
-
-namespace TestingWorkshop.Fundamentals
+﻿namespace TestingWorkshop.Fundamentals
 {
     public class LoginManager
     {
-        private readonly IDatabase _database;
+        private readonly IConfiguration _configuration;
 
-        public LoginManager(IDatabase database)
+        public LoginManager(IConfiguration configuration)
         {
-            _database = database;
+            _configuration = configuration;
         }
 
-        public async Task<bool> HasLoginFailedAsync(int userId, int maxFailedLoginCount)
+        public bool HasLoginFailedAsync(int userFailedLoginCount)
         {
-            var userFailedLoginCount = await _database.GetUserFailedLoginCountAsync(userId);
+            var maxFailedLoginCount = _configuration.MaxFailedLoginCount;
             return userFailedLoginCount >= maxFailedLoginCount;
         }
 
-        public async Task<bool> HasSessionTimedOutAsync(int userId, int maxSessionDuration)
+        public bool HasSessionTimedOutAsync(int userSessionDuration)
         {
-            var userSessionDuration = await _database.GetUserFailedLoginCountAsync(userId);
+            var maxSessionDuration = _configuration.MaxSessionDuration;
             return userSessionDuration >= maxSessionDuration;
         }
     }

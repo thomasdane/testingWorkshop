@@ -8,7 +8,7 @@
 
     public class Configuration : IConfiguration
     {
-        public int MaxFailedLoginCount => 5;
+        public int MaxFailedLoginCount => 6;
         public int MaxSessionDuration => 3600;
     }
 }
