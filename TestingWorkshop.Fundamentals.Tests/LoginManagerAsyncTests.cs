@@ -16,8 +16,8 @@ namespace TestingWorkshop.Fundamentals.Tests
         public async Task HasLoginFailedAsyncTests(int userFailedLoginCount, bool expected)
         {
             //Arrange
-            var databaseMock = GetDatabaseMock(userFailedLoginCount);
-            var configurationMock = GetConfigurationMock();
+            var databaseMock = GetDatabase(userFailedLoginCount);
+            var configurationMock = GetConfiguration();
             var loginManager = new LoginManagerAsync(configurationMock, databaseMock);
 
             //Act
@@ -27,14 +27,14 @@ namespace TestingWorkshop.Fundamentals.Tests
             Assert.Equal(expected, actual);
         }
 
-        private IConfiguration GetConfigurationMock()
+        private IConfiguration GetConfiguration()
         {
             var databaseMock = new Mock<IConfiguration>();
             databaseMock.Setup(mock => mock.MaxFailedLoginCount).Returns(maxFailedLoginCount);
             return databaseMock.Object;
         }
 
-        private IDatabase GetDatabaseMock(int userFailedLoginCount)
+        private IDatabase GetDatabase(int userFailedLoginCount)
         {
             var databaseMock = new Mock<IDatabase>();
             databaseMock.Setup(mock => mock.GetUserFailedLoginCountAsync(It.IsAny<int>())).ReturnsAsync(userFailedLoginCount);

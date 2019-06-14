@@ -12,7 +12,7 @@ namespace TestingWorkshop.Fundamentals.Tests
         public void HasLoginFailedAsyncTests(int userFailedLoginCount, bool expected)
         {
             //Arrange
-            var configurationMock = GetConfigurationMock();
+            var configurationMock = GetConfiguration();
             var loginManager = new LoginManager(configurationMock);
 
             //Act
@@ -22,7 +22,7 @@ namespace TestingWorkshop.Fundamentals.Tests
             Assert.Equal(expected, actual);
         }
 
-        private IConfiguration GetConfigurationMock()
+        private IConfiguration GetConfiguration()
         {
             var databaseMock = new Mock<IConfiguration>();
             databaseMock.Setup(mock => mock.MaxFailedLoginCount).Returns(5);

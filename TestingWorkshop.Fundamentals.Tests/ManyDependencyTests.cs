@@ -31,18 +31,18 @@ namespace TestingWorkshop.Fundamentals.Tests
 
         public Dependencies(int userFailedLoginCount)
         {
-            Database = GetDatabaseMock(userFailedLoginCount);
-            Configuration = GetConfigurationMock();
+            Database = GetDatabase(userFailedLoginCount);
+            Configuration = GetConfiguration();
         }
 
-        private IConfiguration GetConfigurationMock()
+        private IConfiguration GetConfiguration()
         {
             var databaseMock = new Mock<IConfiguration>();
             databaseMock.Setup(mock => mock.MaxFailedLoginCount).Returns(5);
             return databaseMock.Object;
         }
 
-        private IDatabase GetDatabaseMock(int userFailedLoginCount)
+        private IDatabase GetDatabase(int userFailedLoginCount)
         {
             var databaseMock = new Mock<IDatabase>();
             databaseMock.Setup(mock => mock.GetUserFailedLoginCountAsync(It.IsAny<int>())).ReturnsAsync(userFailedLoginCount);
