@@ -4,7 +4,7 @@ using Xunit;
 
 namespace TestingWorkshop.Fundamentals.Tests
 {
-    public class LoginManagerWithConfigTests
+    public class LoginManagerAsyncTests
     {
         private readonly int maxFailedLoginCount = 5;
         private readonly int userId = 1337;
@@ -18,7 +18,7 @@ namespace TestingWorkshop.Fundamentals.Tests
             //Arrange
             var databaseMock = GetDatabaseMock(userFailedLoginCount);
             var configurationMock = GetConfigurationMock();
-            var loginManager = new LoginManagerWithConfig(configurationMock, databaseMock);
+            var loginManager = new LoginManagerAsync(configurationMock, databaseMock);
 
             //Act
             var actual = await loginManager.HasLoginFailedAsync(userId);

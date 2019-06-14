@@ -5,8 +5,6 @@ namespace TestingWorkshop.Fundamentals.Tests
 {
     public class LoginManagerTests
     {
-        private readonly int maxFailedLoginCount = 5;
-
         [Theory]
         [InlineData(4, false)]
         [InlineData(5, true)]
@@ -18,7 +16,7 @@ namespace TestingWorkshop.Fundamentals.Tests
             var loginManager = new LoginManager(configurationMock);
 
             //Act
-            var actual = loginManager.HasLoginFailedAsync(userFailedLoginCount);
+            var actual = loginManager.HasLoginFailed(userFailedLoginCount);
 
             //Assert
             Assert.Equal(expected, actual);
@@ -27,7 +25,7 @@ namespace TestingWorkshop.Fundamentals.Tests
         private IConfiguration GetConfigurationMock()
         {
             var databaseMock = new Mock<IConfiguration>();
-            databaseMock.Setup(mock => mock.MaxFailedLoginCount).Returns(maxFailedLoginCount);
+            databaseMock.Setup(mock => mock.MaxFailedLoginCount).Returns(5);
             return databaseMock.Object;
         }
     }

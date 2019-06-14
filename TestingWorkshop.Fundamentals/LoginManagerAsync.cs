@@ -2,12 +2,12 @@
 
 namespace TestingWorkshop.Fundamentals
 {
-    public class LoginManagerWithConfig
+    public class LoginManagerAsync
     {
         private readonly IConfiguration _configuration;
         private readonly IDatabase _database;
 
-        public LoginManagerWithConfig(IConfiguration configuration, IDatabase database)
+        public LoginManagerAsync(IConfiguration configuration, IDatabase database)
         {
             _configuration = configuration;
             _database = database;

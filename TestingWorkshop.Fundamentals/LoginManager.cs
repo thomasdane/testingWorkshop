@@ -9,13 +9,13 @@
             _configuration = configuration;
         }
 
-        public bool HasLoginFailedAsync(int userFailedLoginCount)
+        public bool HasLoginFailed(int userFailedLoginCount)
         {
             var maxFailedLoginCount = _configuration.MaxFailedLoginCount;
             return userFailedLoginCount >= maxFailedLoginCount;
         }
 
-        public bool HasSessionTimedOutAsync(int userSessionDuration)
+        public bool HasSessionTimedOut(int userSessionDuration)
         {
             var maxSessionDuration = _configuration.MaxSessionDuration;
             return userSessionDuration >= maxSessionDuration;
